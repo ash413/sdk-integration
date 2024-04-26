@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import clevertap from 'clevertap-web-sdk';
 
 const SignupForm = () => {
     const [name, setName] = useState('');
@@ -6,23 +7,27 @@ const SignupForm = () => {
     const [phone, setPhone] = useState('');
     const [dob, setDob] = useState('');
 
-    /*const handleLogin = () => {
+    const handleLogin = () => {
+        const formattedPhone = `+${phone.slice(0, 2)}${phone.slice(2)}`;
+        
         clevertap.onUserLogin.push({
         "Site": {
-        "Name": name,
-        "Email": email,
-        "Phone": phone,
+        "Name": '',
+        "Email": '',
+        "Phone": formattedPhone,
         "DOB": new Date(dob)
             }
         });
     }
 
     const handleProfilePush = () => {
+        const formattedPhone = `+${phone.slice(0, 2)}${phone.slice(2)}`;
+
         clevertap.profile.push({
         "Site": {
-        "Name": name,
-        "Email": email,
-        "Phone": phone,
+        "Name": '',
+        "Email": '',
+        "Phone": formattedPhone,
         "DOB": new Date(dob)
             }
         });
@@ -40,18 +45,20 @@ const SignupForm = () => {
     }
 
     const handleEventPush = () => {
+        const formattedPhone = `+${phone.slice(0, 2)}${phone.slice(2)}`;
+
         clevertap.event.push({
             "eventName": "FormSubmitted",
             "eventProperties": {
-        "name": name,
-        "email": email,
-        "phone": phone,
+        "name": '',
+        "email": '',
+        "phone": formattedPhone,
         "dob": new Date(dob),
         "age": 25,
         "score": 85.6
             }
         });
-    }*/
+    }
 
     return (
     <div className="flex flex-col items-center justify-center h-screen">
@@ -110,25 +117,25 @@ const SignupForm = () => {
         <div className="flex flex-col justify-between">
             <button
             className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 my-2 rounded focus:outline-none focus:shadow-outline"
-            /*onClick={handleLogin}*/
+            onClick={handleLogin}
             >
                 Login
             </button>
             <button
             className="bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 my-2 rounded focus:outline-none focus:shadow-outline"
-            /*onClick={handleProfilePush}*/
+            onClick={handleProfilePush}
             >
                 Profile Push
             </button>
             <button
             className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 my-2 rounded focus:outline-none focus:shadow-outline"
-            /*onClick={handlePushNotification}*/
+            onClick={handlePushNotification}
             >
                 Ask For Push
             </button>
             <button
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 my-2 rounded focus:outline-none focus:shadow-outline"
-            /*onClick={handleEventPush}*/
+            onClick={handleEventPush}
             >
                 Raise Event
             </button>
